@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc
+       https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+<!--    springmvc配置文件，声明Controller和其他web相关对象-->
+<!--    组件扫描器-->
+    <context:component-scan base-package="com.anan" use-default-filters="false">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+<!--    视图解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+    <!-- 处理静态资源的访问 -->
+    <mvc:default-servlet-handler/>
+
+    <mvc:annotation-driven/>
+    <mvc:resources mapping="/static/images/**" location="/static/images/"/>
+    <mvc:resources mapping="/static/js/**" location="/static/js/"/>
+<!--    <mvc:resources mapping="/admin/func/**" location="/admin/func/"/>-->
+<!--    <mvc:resources mapping="/admin/**" location="/admin/"/>-->
+<!--    <mvc:resources mapping="/noadmin/func/**" location="/noadmin/func/"/>-->
+<!--    <mvc:resources mapping="/noadmin/**" location="/noadmin/"/>-->
+
+<!--    注解驱动   1.响应ajax  2.解决静态资源的访问问题-->
+<!--    <mvc:annotation-driven />-->
+    <!-- 配置数据校验-->
+    <bean id="validatorFactoryBean" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
+    </bean>
+    <mvc:annotation-driven validator="validatorFactoryBean"></mvc:annotation-driven>
+
+    <!--注册拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!--映射要拦截的请求-->
+            <mvc:mapping path="/**"/>
+            <!--设置放行的请求-->
+            <mvc:exclude-mapping path="/login"></mvc:exclude-mapping>
+            <!--配置具体的拦截器实现功能的类-->
+            <bean class="com.anan.interceptor.loginInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+
+</beans>

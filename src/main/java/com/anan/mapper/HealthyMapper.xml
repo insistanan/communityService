@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!--sql映射配置文件-->
+
+<mapper namespace="com.anan.mapper.HealthyMapper">
+    <!--这里的namespace写所需要的调用方法的接口-->
+    <insert id="insertHealthy">
+        insert into healthy(yonghu) values(#{yonghu})
+    </insert>
+    <delete id="delete">
+        delete from healthy where yonghu = #{yonghu} and yonghu != 'anan'
+    </delete>
+    <select id="selectHealthy" resultType="com.anan.entity.Healthy">
+        select id,shengao,tizhong,feihuoliang,xueya,maibo,tangniaobing,xinzangbing,qitajibing,sheru,yonghu,bmi from healthy where yonghu = #{yonghu}
+    </select>
+    <update id="updateHealthy" parameterType="com.anan.entity.Healthy" >
+        update  healthy
+        <set>
+            <if test="shengao != null  "> shengao = #{shengao},</if>
+            <if test="tizhong != null"> tizhong = #{tizhong},</if>
+            <if test="feihuoliang != null"> feihuoliang = #{feihuoliang},</if>
+            <if test="xueya != null"> xueya = #{xueya},</if>
+            <if test="maibo != null"> maibo = #{maibo},</if>
+            <if test="tangniaobing != null"> tangniaobing = #{tangniaobing},</if>
+            <if test="xinzangbing != null"> xinzangbing = #{xinzangbing},</if>
+            <if test="qitajibing != null"> qitajibing = #{qitajibing},</if>
+            <if test="sheru != null"> sheru = #{sheru},</if>
+            <if test="bmi != null"> bmi = #{bmi},</if>
+        </set>
+        where yonghu = #{yonghu}
+    </update>
+
+</mapper>

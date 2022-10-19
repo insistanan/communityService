@@ -1,0 +1,42 @@
+.xiala {
+    background-color: #55C29B;
+    color: white;
+    padding: 20px;
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
+    height: 100%;
+}
+
+.yonghuxiala {
+    position: relative;
+    display: inline-block;
+    float: right;
+    height: 100%;
+}
+
+.xiala-content {
+    display: none;
+    position: relative;
+    background-color: #f9f9f9;
+    min-width: 100px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.xiala-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.xiala-content a:hover {background-color: #f1f1f1}
+
+.yonghuxiala:hover .xiala-content {
+    display: block;
+}
+
+.yonghuxiala:hover .xiala {
+    background-color: #3e8e41;
+}

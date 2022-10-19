@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!--sql映射配置文件-->
+
+<mapper namespace="com.anan.mapper.FoodMapper">
+    <!--这里的namespace写所需要的调用方法的接口-->
+    <select id="kaluli" resultType="String">
+        SELECT kaluli  FROM food WHERE shipinming LIKE concat('%',#{shipinming},'%') limit 1
+    </select>
+
+</mapper>

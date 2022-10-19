@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!--sql映射配置文件-->
+
+<mapper namespace="com.anan.mapper.AdminMapper">
+    <!--这里的namespace写所需要的调用方法的接口-->
+    <select id="login" resultType="com.anan.entity.Admin">
+        select yonghu,mima,guanliyuan from admin where yonghu=#{yonghu} and mima=#{mima};
+    </select>
+
+    <select id="selectAdmin" resultType="com.anan.entity.Admin">
+        select yonghu,mima from admin where yonghu = #{yonghu}
+    </select>
+
+    <insert id="register" >
+        insert into admin(yonghu,mima) values(#{yonghu},#{mima});
+    </insert>
+
+    <update id="addAdmin" parameterType="com.anan.entity.Admin">
+        update  admin
+        set guanliyuan = #{guanliyuan} where yonghu = #{yonghu}
+    </update>
+    
+    <update id="deleteAdmin" parameterType="com.anan.entity.Admin">
+        update  admin
+        set guanliyuan = #{guanliyuan} where yonghu = #{yonghu}
+    </update>
+
+    <update id="xiugaimima" >
+        update  admin
+        set mima = #{mima} where yonghu = #{yonghu}
+    </update>
+    <delete id="delete">
+        delete from admin where yonghu = #{yonghu} and yonghu != 'anan'
+    </delete>
+
+    <select id="selectAdmini" resultType="com.anan.entity.Admin">
+        select yonghu,mima,guanliyuan,id from admin  where id = #{id}
+    </select>
+
+</mapper>
