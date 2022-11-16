@@ -39,17 +39,8 @@
     </bean>
     <mvc:annotation-driven validator="validatorFactoryBean"></mvc:annotation-driven>
 
-    <!--注册拦截器-->
-    <mvc:interceptors>
-        <mvc:interceptor>
-            <!--映射要拦截的请求-->
-            <mvc:mapping path="/**"/>
-            <!--设置放行的请求-->
-            <mvc:exclude-mapping path="/login"></mvc:exclude-mapping>
-            <!--配置具体的拦截器实现功能的类-->
-            <bean class="com.anan.interceptor.loginInterceptor"></bean>
-        </mvc:interceptor>
-    </mvc:interceptors>
+
+
 
 
 </beans>

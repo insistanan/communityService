@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!--sql映射配置文件-->
+
+<mapper namespace="com.anan.mapper.FuzerenMapper">
+    <!--这里的namespace写所需要的调用方法的接口-->
+
+    <select id="selectFuzerens" resultType="com.anan.entity.Fuzeren">
+        select id,name,dianhua,youxiang,fuzexiaoqu,dizhi from fuzeren order by id
+    </select>
+    <select id="viewFuzeren" resultType="com.anan.entity.Fuzeren">
+        select id,name,dianhua,youxiang,fuzexiaoqu,dizhi from fuzeren where id=#{id}
+    </select>
+    <insert id="addFuzeren">
+        insert into fuzeren(name,dianhua,youxiang,fuzexiaoqu,dizhi) values(#{name},#{dianhua},#{youxiang},#{fuzexiaoqu},#{dizhi});
+    </insert>
+    <delete id="deleteFuzeren">
+       delete from fuzeren where id = #{id}
+    </delete>
+    <update id="updateFuzeren">
+        update fuzeren
+        <set>
+            <if test="name != null  "> name = #{name},</if>
+            <if test="dianhua != null"> dianhua = #{dianhua},</if>
+            <if test="youxiang != null"> youxiang = #{youxiang},</if>
+            <if test="fuzexiaoqu != null"> fuzexiaoqu = #{fuzexiaoqu},</if>
+            <if test="dizhi != null"> dizhi = #{dizhi},</if>
+        </set>
+        where id = #{id}
+    </update>
+</mapper>

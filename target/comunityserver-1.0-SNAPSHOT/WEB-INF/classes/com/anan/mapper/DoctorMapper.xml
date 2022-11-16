@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!--sql映射配置文件-->
+
+<mapper namespace="com.anan.mapper.DoctorMapper">
+    <!--这里的namespace写所需要的调用方法的接口-->
+<insert id="insertDoctor">
+    insert into yishengxinxi(yishengxingming,xingbie,zhicheng,lianxidianhua,jianjie,dizhi,youxiang) values(#{yishengxingming},#{xingbie},#{zhicheng},#{lianxidianhua},#{jianjie},#{dizhi},#{youxiang})
+</insert>
+    <select id="selectDoctor" resultType="com.anan.entity.Doctor">
+        select id,yishengxingming,xingbie,zhicheng,lianxidianhua,jianjie,youxiang,dizhi from yishengxinxi order by id
+    </select>
+    <select id="viewDoctor" resultType="com.anan.entity.Doctor">
+        select id,yishengxingming,xingbie,zhicheng,lianxidianhua,jianjie,youxiang,dizhi from yishengxinxi where id=#{id}
+    </select>
+    <delete id="deleteDoctor" >
+        delete from yishengxinxi where  id = #{id}
+    </delete>
+    <update id="updateDoctor" parameterType="com.anan.entity.Doctor">
+        update  yishengxinxi
+        <set>
+            <if test="yishengxingming != null"> yishengxingming = #{yishengxingming},</if>
+            <if test="xingbie != null"> xingbie = #{xingbie},</if>
+            <if test="zhicheng != null"> zhicheng = #{zhicheng},</if>
+            <if test="lianxidianhua != null"> lianxidianhua = #{lianxidianhua},</if>
+            <if test="jianjie != null"> jianjie = #{jianjie},</if>
+            <if test="youxiang != null"> youxiang = #{youxiang},</if>
+            <if test="dizhi != null"> dizhi = #{dizhi},</if>
+        </set>
+        where id = #{id}
+    </update>
+</mapper>

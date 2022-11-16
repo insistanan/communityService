@@ -84,11 +84,9 @@ public class MutiController {
         Healthy healthy = healthyService.viewHealthy(admin.getYonghu());
         HealthyQuestion healthyQuestion = healthyQuestionService.viewHealthyQuestion(admin.getYonghu());
                 //登录成功
-                //将admin存储到session
                 //将user存储到session
                 //将healthy存储到session
                 //将healthyQuestion存储到session
-        session.setAttribute("admin", admin);
         session.setAttribute("user", user);
         session.setAttribute("healthy", healthy);
         session.setAttribute("healthyQuestion", healthyQuestion);

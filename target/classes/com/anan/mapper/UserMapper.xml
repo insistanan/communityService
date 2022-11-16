@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!--sql映射配置文件-->
+
+<mapper namespace="com.anan.mapper.UserMapper">
+    <!--这里的namespace写所需要的调用方法的接口-->
+    <select id="selectUsers" resultType="com.anan.entity.User">
+        select id,xingming,xingbie,minzu,nianling,xiaoqu,danwei,menpaihao,yonghu,dizhi from user order by id
+    </select>
+    <select id="selectUser" resultType="com.anan.entity.User">
+        select id,xingming,xingbie,minzu,nianling,xiaoqu,danwei,menpaihao,yonghu,dizhi from user where yonghu = #{yonghu}
+    </select>
+    <select id="selectUser2" resultType="com.anan.entity.User">
+        select id,xingming,xingbie,minzu,nianling,xiaoqu,danwei,menpaihao,yonghu,dizhi from user where id = #{id}
+    </select>
+    <insert id="insertUser">
+        insert into user(yonghu) values(#{yonghu})
+    </insert>
+    <delete id="delete" >
+        delete from user where yonghu = #{yonghu} and yonghu != 'anan'
+    </delete>
+    <update id="updateUser" parameterType="com.anan.entity.User" >
+        update  user
+        <set>
+            <if test="xingming != null  "> xingming = #{xingming},</if>
+            <if test="xingbie != null"> xingbie = #{xingbie},</if>
+            <if test="minzu != null"> minzu = #{minzu},</if>
+            <if test="danwei != null"> danwei = #{danwei},</if>
+            <if test="menpaihao != null"> menpaihao = #{menpaihao},</if>
+            <if test="yonghu != null"> yonghu = #{yonghu},</if>
+            <if test="dizhi != null"> dizhi = #{dizhi},</if>
+            <if test="xiaoqu != null"> xiaoqu = #{xiaoqu},</if>
+            <if test="nianling != null"> nianling = #{nianling},</if>
+        </set>
+        where yonghu = #{yonghu}
+    </update>
+
+</mapper>

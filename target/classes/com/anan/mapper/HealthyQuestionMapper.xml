@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!--sql映射配置文件-->
+
+<mapper namespace="com.anan.mapper.HealthyQuestionMapper">
+    <!--这里的namespace写所需要的调用方法的接口-->
+    <insert id="insertHealthyQuestion">
+        insert into healthyquestion(yonghu) values(#{yonghu})
+    </insert>
+    <delete id="delete">
+        delete from healthyquestion where yonghu = #{yonghu} and yonghu != 'anan'
+    </delete>
+    <select id="selectHealthyQuestion" resultType="com.anan.entity.HealthyQuestion">
+        select id,status,shifouchangchishucai,shuimianshijian,shuiwujiaoma,yundongcishu,yundongshichang,fengxiandiqu,addtime,yonghu from healthyquestion where yonghu = #{yonghu}
+    </select>
+    <update id="updateHealthyQuestion" parameterType="com.anan.entity.HealthyQuestion" >
+        update  healthyquestion
+        <set>
+            <if test="shifouchangchishucai != null"> shifouchangchishucai = #{shifouchangchishucai},</if>
+            <if test="shuimianshijian != null"> shuimianshijian = #{shuimianshijian},</if>
+            <if test="shuiwujiaoma != null"> shuiwujiaoma = #{shuiwujiaoma},</if>
+            <if test="yundongcishu != null"> yundongcishu = #{yundongcishu},</if>
+            <if test="yundongshichang != null"> yundongshichang = #{yundongshichang},</if>
+            <if test="fengxiandiqu != null"> fengxiandiqu = #{fengxiandiqu},</if>
+        </set>
+        where yonghu = #{yonghu}
+    </update>
+</mapper>
